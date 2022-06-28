@@ -28,4 +28,8 @@ app.get('/home',(req,res)=>{
     res.send("Hi Welcome");
 })
 
-app.listen(2323,()=>{console.log('I am up at 2323')});
+if(process.env.NODE_ENV=="production"){
+  app.use(express.static("build"));
+}
+
+app.listen(process.env.PORT|| 2323,()=>{console.log('I am up at 2323')});
